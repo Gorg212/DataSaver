@@ -1,13 +1,13 @@
 import random, datetime, os, pickle, shutil
 
 def New_Document():
-  LUD = 1 # LAST UNIQUE DIGIT
+  LUD = 0 # LAST UNIQUE DIGIT
   unique = []
   date = datetime.date.today()
   unique.append(date)
   unique_id = str(unique[0])
   unique_id = unique_id.replace('-', '')
-  unique_id = unique_id + str(LUD)
+  
 
   
   folder = r'E:\\Programming related\\DATASAVER\\DATA'
@@ -16,15 +16,18 @@ def New_Document():
   
 
   file = len(filenames)
-
   for i in range(file):
-    
-    if unique_id == filenames[i]:
-        LUD += file 
-        unique_id = unique_id + str(LUD)
-        break
+    file2 = len(filenames)
+    print(file2)
+    if file2 == 0:
+      LUD += 1
+      unique_id = unique_id + str(LUD)
+    elif unique_id == filenames[i]:
+      LUD += file
+      unique_id = unique_id + str(LUD) #unique_id.replace(unique_id[-1], str(LUD), -1)
+      break
     else:
-        continue
+      continue
      
 
   print(f"Your  unique id is: {unique_id}")
@@ -40,10 +43,23 @@ def New_Document():
     d.write(f"Disease: {dis}\n")
     d.write(f"Ward: {ward}\n")
 
+  data.close()
 
-
-
+def Existing_Document():
+  while True:
+    unique = input("Please enter your unique_id: ")
+    # Folder ↙ input ↗
+    try:
+      with open('E:\\Programming related\\DATASAVER\\DATA\\' + unique) as file:
+        read = file.read()
+      print(read)
+      break
+    except:
+      print("No such file found with code. Please try again!")
   
+      
+
+
 print("Please choose a NUMBER:")
 print("1: New Document")
 print("2: Existing Document")
@@ -63,4 +79,4 @@ while True:
 if ask == 1:
     New_Document()
 else:
-    pass
+    Existing_Document()
