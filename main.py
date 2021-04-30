@@ -10,7 +10,7 @@ def New_Document():
   
 
   
-  folder = r'E:\\Programming related\\DATASAVER\\DATA'
+  folder = r'Enter your path here where you want to save files'
   filenames = list(os.listdir(folder))
   print(filenames)
   
@@ -31,7 +31,7 @@ def New_Document():
      
 
   print(f"Your  unique id is: {unique_id}")
-  data = open('E:\\Programming related\\DATASAVER\\DATA\\' + unique_id, 'w')
+  data = open('Enter your path here' + unique_id, 'w')
   name =input("Name: ")
   age = input("Age: ")
   dis = input("Disease: ")
@@ -50,7 +50,7 @@ def Existing_Document():
     unique = input("Please enter your unique_id: ")
     # Folder ↙ input ↗
     try:
-      with open('E:\\Programming related\\DATASAVER\\DATA\\' + unique) as file:
+      with open('Enter your path here where you want to save files' + unique) as file:
         read = file.read()
       print(read)
       break
